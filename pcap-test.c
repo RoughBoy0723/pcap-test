@@ -49,20 +49,21 @@ int main(int argc, char *argv[]){
         tcp_hdr = (struct libnet_tcp_hdr *)(packet + LIBNET_IPV4_H + LIBNET_ETH_H);
         char pkt_data[20] = {' '};
 
+        if(ip_hdr->ip_p == 0x06){
+            printf("Src Mac : %s\n", ether_ntoa((const struct ether_addr *)&eth_hdr->ether_shost));
+            printf("Dst Mac: %s\n", ether_ntoa((const struct ether_addr *)&eth_hdr->ether_dhost));
+            printf("Src Ip: %s\n", inet_ntoa(ip_hdr->ip_src));
+            printf("Dst Ip: %s\n", inet_ntoa(ip_hdr->ip_dst));
+            printf("Src Port: %d\n", ntohs(tcp_hdr->th_sport));
+            printf("Dst Port: %d\n", ntohs(tcp_hdr->th_dport));
 
-        printf("Source MAC: %s\n", ether_ntoa((const struct ether_addr *)&eth_hdr->ether_shost));
-        printf("Destination MAC: %s\n", ether_ntoa((const struct ether_addr *)&eth_hdr->ether_dhost));
-        printf("Source IP: %s\n", inet_ntoa(ip_hdr->ip_src));
-        printf("Destination IP: %s\n", inet_ntoa(ip_hdr->ip_dst));
-        printf("Source Port: %d\n", ntohs(tcp_hdr->th_sport));
-        printf("Destination Port: %d\n", ntohs(tcp_hdr->th_dport));
-
-        unsigned char * data = (unsigned char *)(packet + LIBNET_ETH_H  + LIBNET_IPV4_H + LIBNET_TCP_H);
-        printf("Data : ");
-        for(int i = 0; i< 20; i++){
-            printf("%02X ", data[i]);
+            unsigned char * data = (unsigned char *)(packet + LIBNET_ETH_H  + LIBNET_IPV4_H + LIBNET_TCP_H);
+            printf("Data : ");
+            for(int i = 0; i< 20; i++){
+                printf("%02X ", data[i]);
+            }
+            printf("\n----------------------------------------\n");
         }
-        printf("\n----------------------------------------\n");
     }
     pcap_close(pcap);
 }
