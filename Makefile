@@ -1,17 +1,13 @@
 #Makefile
-LDLIBS += -libnet
-TARGET = pcap
+
+LDLIBS += -lpcap
+
+TARGET = pcap-test
 
 all: $(TARGET)
 
-$(TARGET): main.o $(TARGET).o
-        g++ -o $(TARGET) main.o $(TARGET).o
-        
-main.o: main.cpp $(TARGET).h
-        g++ -c -o main.o main.cpp 
-
-add_nob.o: $(TARGET).cpp $(TARGET).h
-        g++ -c -o $(TARGET).o $(TARGET).cpp
+$(TARGET): pcap-test.c
+	g++ -o pcap-test pcap-test.c $(LDLIBS)
 
 clean:
 	rm -f $(TARGET)
