@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
         struct libnet_tcp_hdr* tcp_hdr = (struct libnet_tcp_hdr *)(packet + LIBNET_IPV4_H + LIBNET_ETH_H);
         char pkt_data[20] = {' '};
 
-        if(eth_hdr->ether_type  == 0x0800 && ip_hdr->ip_p == 0x06){
+        if(ip_hdr->ip_p == 0x06){
             printf("Src Mac : %s\n", ether_ntoa((const struct ether_addr *)&eth_hdr->ether_shost));
             printf("Dst Mac: %s\n", ether_ntoa((const struct ether_addr *)&eth_hdr->ether_dhost));
             printf("Src Ip: %s\n", inet_ntoa(ip_hdr->ip_src));
