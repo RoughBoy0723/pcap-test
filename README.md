@@ -1,10 +1,5 @@
 # pcap-test
 pcap-test homework 
-7/26 Pcap lib, Libnet lib의 숙달 및 OSI 7Layer 각종 프로토콜에 대해 알아가는 수업이었습니다.
-
-수업 내용으로 ppt를 만들었으며 내용은 OSI7 Layer와 각 layer에서 사용되는 프로토콜 및 기기들을 정리했습니다.
-
-![gilgil's_OSI7Layer](https://github.com/user-attachments/assets/5e489b09-64cd-488c-b800-e5a726b4ed53)
 
 과제 코드 작성에 앞서 필요한 사전지식은 수업에서 배운 pcap 사용법과 패킷의 헤더에서 필요한 정보만 빼오는 능력들입니다.
 
